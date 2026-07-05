@@ -1,4 +1,5 @@
-import { db, Prisma } from '@/lib/db' // Clean single-line import!
+import { db } from '@/lib/db'
+import { Prisma } from '@prisma/client'
 import { getProgress } from './get-progress'
 
 type CourseWithProgressAndCategory = Prisma.CourseGetPayload<{ include: { category: true; chapters: true } }> & {

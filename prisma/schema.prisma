@@ -1,11 +1,10 @@
 generator client {
-  provider        = "prisma-client" // or `prisma-client-js`
-  output          = "../generated/prisma"
-  engineType      = "client" // enable Prisma ORM without Rust
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Course {

@@ -1,4 +1,5 @@
-import { db, Prisma } from '@/lib/db'
+import { db } from '@/lib/db'
+import { Prisma } from '@prisma/client'
 
 type PurchaseWithCourse = Prisma.PurchaseGetPayload<{ include: { course: true } }>
 
