@@ -1,17 +1,19 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
-import { db, Prisma } from '@/lib/db' // Using your newly fixed db import!
+import { db } from '@/lib/db'
 import { isTeacher } from '@/lib/teacher'
 
 type RouteParams = Promise<{
-  courseId: string
+  courseId: string;
 }>
 
-export async function POST(request: NextRequest, { params }: { params: RouteParams }) {
-  const { courseId } = await params
-  
+export async function POST(
+  request: NextRequest,
+  { params }: { params: RouteParams }
+) {
   try {
     const { userId } = await auth()
+    const { courseId } = await params
     const { url } = await request.json()
 
     if (!userId || !isTeacher(userId)) {
@@ -38,7 +40,8 @@ export async function POST(request: NextRequest, { params }: { params: RoutePara
     })
 
     return NextResponse.json(attachment)
-  } catch {
+  } catch (error) {
+    console.log('COURSE_ID_ATTACHMENTS_POST', error)
     return new NextResponse('Internal server error', { status: 500 })
   }
 }
