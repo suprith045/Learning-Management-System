@@ -3,13 +3,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { isTeacher } from '@/lib/teacher'
 
-type Attachment = Promise<{
+// 1. Fixed type: It should only contain 'courseId' wrapped in a Promise
+type RouteParams = Promise<{
   courseId: string
-  attachmentId: string
 }>
 
-export async function POST(request: NextRequest, { params }: { params: Attachment }) {
+export async function POST(request: NextRequest, { params }: { params: RouteParams }) {
   const { courseId } = await params
+  
   try {
     const { userId } = await auth()
     const { url } = await request.json()
