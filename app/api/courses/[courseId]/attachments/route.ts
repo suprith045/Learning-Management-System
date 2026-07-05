@@ -1,6 +1,6 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db, Prisma } from '@/lib/db' // Using your newly fixed db import!
 import { isTeacher } from '@/lib/teacher'
 
 type RouteParams = Promise<{
