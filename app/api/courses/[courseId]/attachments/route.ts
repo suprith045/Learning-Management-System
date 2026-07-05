@@ -4,7 +4,7 @@ import { db } from '@/lib/db'
 import { isTeacher } from '@/lib/teacher'
 
 type RouteParams = Promise<{
-  courseId: string // Only courseId here!
+  courseId: string
 }>
 
 export async function POST(request: NextRequest, { params }: { params: RouteParams }) {
