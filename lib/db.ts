@@ -1,5 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg"
-import { PrismaClient } from '../generated/prisma/client'
+// Added "Prisma" to the import below
+import { PrismaClient, Prisma } from '../generated/prisma/client'
 
 declare global {
   // eslint-disable-next-line no-var
@@ -12,3 +13,6 @@ const prisma = new PrismaClient({ adapter })
 export const db = globalThis.prisma || prisma
 
 if (process.env.NODE_ENV !== 'production') globalThis.prisma = db
+
+// Re-export Prisma so other files can use it safely!
+export { Prisma }
