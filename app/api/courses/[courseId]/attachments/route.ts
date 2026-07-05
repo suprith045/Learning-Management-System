@@ -3,9 +3,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { isTeacher } from '@/lib/teacher'
 
-// 1. Fixed type: It should only contain 'courseId' wrapped in a Promise
 type RouteParams = Promise<{
-  courseId: string
+  courseId: string // Only courseId here!
 }>
 
 export async function POST(request: NextRequest, { params }: { params: RouteParams }) {
